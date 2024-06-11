@@ -17,7 +17,7 @@ class myApp(App):
         self.label = Label(size_hint=(0.5, 0.1), pos_hint={'x': 0.25, 'y': 1.6})
         fl.add_widget(self.label)
 
-        colors = [
+        self.colors = [
             {"code": "#ff0000", "name": "красный", "color": [1, 0, 0, 1]},
             {"code": "#ff8800", "name": "оранжевый", "color": [1, 0.529, 0, 1]},
             {"code": "#ffff00", "name": "желтый", "color": [1, 1, 0, 1]},
@@ -28,7 +28,7 @@ class myApp(App):
         ]
 
         y = 500
-        for color in colors:
+        for color in self.colors:
             button = Button(
                 on_press=self.btn_press,
                 background_color=color["color"],
@@ -42,20 +42,10 @@ class myApp(App):
         return s
 
     def btn_press(self, instance):
-        for color in colors:
+        for color in self.colors:    # обращение к списку colors с помощью self.colors
             if instance.background_color == color["color"]:
                 self.text_input.text = color["code"]
                 self.label.text = color["name"]
-
-colors = [
-    {"code": "#ff0000", "name": "красный", "color": [1, 0, 0, 1]},
-    {"code": "#ff8800", "name": "оранжевый", "color": [1, 0.529, 0, 1]},
-    {"code": "#ffff00", "name": "желтый", "color": [1, 1, 0, 1]},
-    {"code": "#00ff00", "name": "зеленый", "color": [0, 1, 0, 1]},
-    {"code": "#00ffff", "name": "голубой", "color": [0, 1, 1, 1]},
-    {"code": "#0000ff", "name": "синий", "color": [0, 0, 1, 1]},
-    {"code": "#ff00ff", "name": "фиолетовый", "color": [1, 0, 1, 1]}
-]
 
 if __name__ == "__main__":
     myApp().run()
